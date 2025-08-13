@@ -11,9 +11,8 @@ RUN apt-get update -y && apt-get install -y cron supervisor unzip libzip-dev lib
 
 RUN pecl install redis \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install mysqli pdo pdo_mysql gd zip pcntl intl exif\
-    && docker-php-ext-enable mysqli pdo pdo_mysql gd zip pcntl intl redis exif
-
+    && docker-php-ext-install mysqli pdo pdo_mysql gd zip pcntl intl exif sockets\
+    && docker-php-ext-enable mysqli pdo pdo_mysql gd zip pcntl intl redis exif sockets
 
 #install composer
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
